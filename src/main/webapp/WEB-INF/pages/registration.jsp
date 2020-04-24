@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -8,23 +9,23 @@
 	</head>
 
 	<body>
-		<form action="/registration/add/user">
+		<form:form action="/register" method="POST" modelAttribute="user">
 		  <div class="container">
 		    <h1>Register</h1>
 		    	<p>Please fill in this form to create an account.</p>
 		    <hr>
-		    		<input type="hidden" name="Id" value={$user.Id} required>
+		    		<form:hidden path="id"/>
 
 		    		<label for="name"><b>Name</b></label>
-		    			<input type="text" placeholder="Enter Name" name="name" required>
+		    			<form:input type="text" placeholder="Enter Name" path="name"/>
 
 		    		<label for="email"><b>Email</b></label>
-		    			<input type="text" placeholder="Enter Email" name="email" required>
+		    			<form:input type="text" placeholder="Enter Email" path="email"/>
 		    		<label for="username"><b>Username</b></label>
-		    			<input type="text" placeholder="Enter Username" name="usernmae" required>
+		    			<form:input type="text" placeholder="Enter Username" path="username"/>
 
 		    		<label for="password"><b>Password</b></label>
-		    			<input type="password" placeholder="Enter Password" name="password" required>
+		    			<form:input type="password" placeholder="Enter Password" path="password"/>
 		    <hr>
 		    	<p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
@@ -32,9 +33,9 @@
 		  </div>
 
 		  <div class="container signin">
-		    <p>Already have an account? <a href="#">Sign in</a>.</p>
+		    <p>Already have an account? <a href="login">Sign in</a>.</p>
 		  </div>
-		</form>
+		</form:form>
 
 	</body>
 </html>

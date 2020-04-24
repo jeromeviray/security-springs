@@ -36,13 +36,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-//                 .antMatchers("/login").permitAll()
-                .antMatchers("/register/**").hasRole("USER")
+                 .antMatchers("/login").permitAll()
+                .antMatchers("/register/**").hasRole("user")
                 .antMatchers("/home").permitAll()
                 .and()
-                .formLogin();
-//                 .loginPage("/login")
-//                 .successForwardUrl("/home")
-//                 .permitAll();
+                .formLogin()
+                 .loginPage("/login")
+                 .successForwardUrl("/home")
+                 .permitAll();
     }
 }
