@@ -30,13 +30,12 @@ public class CustomeUserDetailsService implements UserDetailsService {
         if(user == null ){
             throw new UsernameNotFoundException("Error: Account" +username+ "not found");
         }
-
         List<GrantedAuthority> authority = new ArrayList<>();
-//           for(Role role : user.getRole()) {
-//               System.out.println(role.getAuthority());
-        authority.add(new SimpleGrantedAuthority("USER"));
-//
-//           }
+           for(Role role : user.getRole()) {
+               System.out.println(role.getAuthority());
+        authority.add(new SimpleGrantedAuthority(role.getAuthority()));
+
+           }
         System.out.println("username "+user.getUsername()+" password "+user.getPassword()+" role "+authority);
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authority);

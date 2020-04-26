@@ -11,8 +11,8 @@
 		<h1> WELCOME </h1>
 
 		<div>
-            <h4> go to <a href="#">Registration</a></h4>
-            <h4> go to <a href="#">Login</a></h4>
+            <h4> go to <a href="/register">Registration</a></h4>
+            <h4> go to <a href="/login">Login</a></h4>
         </div>
 	</body>
 </html>

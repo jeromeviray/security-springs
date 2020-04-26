@@ -3,7 +3,7 @@ package com.example.jsp.model;
 //import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class User {
@@ -16,7 +16,11 @@ public class User {
     private String name;
     private String email;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Role> role;
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id")
+    )
+    private List<Role> role;
 
     public int getId() {
         return id;
@@ -58,11 +62,12 @@ public class User {
         this.email = email;
     }
 
-    public Set<Role> getRole() {
+    public List<Role> getRole() {
         return role;
     }
 
-    public void setRole(Set<Role> role) {
+    public void setRole(List<Role> role) {
         this.role = role;
     }
+
 }

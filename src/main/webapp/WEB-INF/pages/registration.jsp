@@ -17,15 +17,15 @@
 		    		<form:hidden path="id"/>
 
 		    		<label for="name"><b>Name</b></label>
-		    			<form:input type="text" placeholder="Enter Name" path="name"/>
+		    			<form:input type="text" placeholder="Enter Name"  path="name" value=""/>
 
 		    		<label for="email"><b>Email</b></label>
-		    			<form:input type="text" placeholder="Enter Email" path="email"/>
+		    			<form:input type="text" placeholder="Enter Email" path="email" value=""/>
 		    		<label for="username"><b>Username</b></label>
-		    			<form:input type="text" placeholder="Enter Username" path="username"/>
+		    			<form:input type="text" placeholder="Enter Username" path="username" value=""/>
 
 		    		<label for="password"><b>Password</b></label>
-		    			<form:input type="password" placeholder="Enter Password" path="password"/>
+		    			<form:input type="password" placeholder="Enter Password" path="password" value=""/>
 		    <hr>
 		    	<p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 

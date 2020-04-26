@@ -12,6 +12,8 @@ public class Role {
     @ManyToMany(mappedBy = "role", fetch = FetchType.LAZY)
     private Set<User> user;
 
+    public Role(){}
+
     public int getId() {
         return id;
     }
