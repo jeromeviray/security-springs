@@ -1,48 +1,53 @@
 package com.example.jsp.configure;
 
-import com.example.jsp.service.CustomeUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+@Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
-    private CustomeUserDetailsService customeUserDetailsService;
+    @Qualifier("customUserDetailsService")
+    private UserDetailsService userDetailsService;
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customeUserDetailsService);
-//        auth.inMemoryAuthentication()
-//                .withUser("jerome1")
-//                .password("jerome12")
-//                .roles("admin")
-//                .and()
-//                .withUser("jeromeviray")
-//                .password("password1")
-//                .roles("user");
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+            auth.userDetailsService(userDetailsService);
+        auth.authenticationProvider(authenticationProvider());
     }
-
     @Bean
-    public PasswordEncoder getPasswordEncoder(){
-        return NoOpPasswordEncoder.getInstance();
+    public DaoAuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setPasswordEncoder(passwordEncoder());
+        provider.setUserDetailsService( userDetailsService );
+        return provider;
+    }
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+       return new BCryptPasswordEncoder();
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests()
+        http.csrf().disable()
+                .authorizeRequests()
                 .antMatchers("/", "/login").permitAll()
-                .antMatchers("/register").authenticated()
+                .antMatchers("/register").hasRole("ADMIN")
                 .and()
                 .formLogin()
-                 .loginPage("/login")
-                .successForwardUrl("/")
-                 .permitAll();
+                .loginPage("/login")
+                .defaultSuccessUrl("/")
+                .permitAll();
     }
 }

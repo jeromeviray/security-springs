@@ -2,12 +2,13 @@ package com.example.jsp.controller;
 
 
 import com.example.jsp.model.User;
-import com.example.jsp.service.CustomeUserDetailsService;
+import com.example.jsp.service.CustomUserDetailsService;
 import com.example.jsp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,7 +20,7 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private CustomeUserDetailsService userDetailsService;
+    private CustomUserDetailsService userDetailsService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET) // home page
     public String home(){
@@ -41,16 +42,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET) // get login form
-    public ModelAndView loginPage(Model model){
+    public ModelAndView getLoginPage(Model model){
         ModelAndView view = new ModelAndView("login");
         model.addAttribute("users", new User());
         return view;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST) // get data from user
-    public ModelAndView login(@ModelAttribute("users") User user){
+    public String login(@ModelAttribute("users") @RequestBody User user){
         userDetailsService.loadUserByUsername(user.getUsername());
-        ModelAndView view = new ModelAndView("home");
-        return view;
+        return "home";
     }
 }

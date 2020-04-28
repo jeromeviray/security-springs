@@ -6,6 +6,7 @@ import com.example.jsp.model.User;
 import com.example.jsp.repository.RoleRepository;
 import com.example.jsp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,12 +18,18 @@ public class UserService{
     private UserRepository userRepo;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public void saveUser(User user){
-        Role role = roleRepository.findByAuthority("user");
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        Role role = roleRepository.findByAuthority("USER");
         List<Role> roles = new ArrayList<>();
         roles.add(role);
         user.setRole(roles);
+
         userRepo.save(user);
     }
 

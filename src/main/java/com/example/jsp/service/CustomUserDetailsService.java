@@ -18,10 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CustomeUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
-
 
     @Override
     @Transactional
@@ -30,13 +29,11 @@ public class CustomeUserDetailsService implements UserDetailsService {
         if(user == null ){
             throw new UsernameNotFoundException("Error: Account" +username+ "not found");
         }
-        List<GrantedAuthority> authority = new ArrayList<>();
-           for(Role role : user.getRole()) {
-               System.out.println(role.getAuthority());
-        authority.add(new SimpleGrantedAuthority(role.getAuthority()));
 
+        List<GrantedAuthority> authority = new ArrayList<>();
+          for(Role role : user.getRole()) {
+               authority.add(new SimpleGrantedAuthority("ROLE_"+role.getAuthority()));
            }
-        System.out.println("username "+user.getUsername()+" password "+user.getPassword()+" role "+authority);
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authority);
     }
