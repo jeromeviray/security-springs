@@ -42,7 +42,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET) // get login form
-    public ModelAndView getLoginPage(Model model){
+    public ModelAndView getLoginPage(Model model, String error){
+        if(error != null){
+            model.addAttribute("error", "username and password are invalid");
+        }
         ModelAndView view = new ModelAndView("login");
         model.addAttribute("users", new User());
         return view;

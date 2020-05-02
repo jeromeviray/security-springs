@@ -1,7 +1,5 @@
 package com.example.jsp.model;
 
-//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-
 import javax.persistence.*;
 import java.util.List;
 
