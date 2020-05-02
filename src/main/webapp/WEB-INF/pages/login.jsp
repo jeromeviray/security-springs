@@ -14,6 +14,7 @@
               <form:form action="/login" method = "POST" modelAttribute="users">
                 <p><form:input type="text" path="username" value="" placeholder="Username or Email"/></p>
                 <p><form:input type="password" path="password" value="" placeholder="Password"/></p>
+                <span style=color:red;> ${error} </span>
                 <p class="remember_me">
                   <label>
                     <input type="checkbox" name="remember_me" id="remember_me">
