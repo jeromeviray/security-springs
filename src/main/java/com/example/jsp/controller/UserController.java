@@ -1,17 +1,19 @@
 package com.example.jsp.controller;
 
 
+import com.example.jsp.model.Product;
 import com.example.jsp.model.User;
 import com.example.jsp.service.CustomUserDetailsService;
+import com.example.jsp.service.ProductService;
 import com.example.jsp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.io.IOException;
 
 @Controller
 public class UserController {
@@ -22,9 +24,17 @@ public class UserController {
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET) // home page
-    public String home(){
-        return "home";
+    @Autowired
+    private ProductService productService;
+
+    @RequestMapping(value = "/", method = RequestMethod.GET) // front page
+    public String getFrontPage(){
+        return "frontpage";
+    }
+
+    @RequestMapping(value = "/home", method = RequestMethod.GET) // home page
+    public String getHomePage(){
+        return "home/home";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET) // get registration form
@@ -32,21 +42,21 @@ public class UserController {
         User user = new User();
         model.addAttribute("user", user);
 
-        return "registration";
+        return "register/register";
     }
     @RequestMapping(value = "/register", method = RequestMethod.POST) // creating new user and saving in database
     public ModelAndView addUser(@ModelAttribute("user") User user){
         userService.saveUser(user);
-        ModelAndView model = new ModelAndView("registration");
+        ModelAndView model = new ModelAndView("register/register");
         return model;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET) // get login form
     public ModelAndView getLoginPage(Model model, String error){
         if(error != null){
-            model.addAttribute("error", "username and password are invalid");
+            model.addAttribute("error", "Username and Password are Invalid");
         }
-        ModelAndView view = new ModelAndView("login");
+        ModelAndView view = new ModelAndView("login/login");
         model.addAttribute("users", new User());
         return view;
     }
@@ -54,6 +64,25 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST) // get data from user
     public String login(@ModelAttribute("users") @RequestBody User user){
         userDetailsService.loadUserByUsername(user.getUsername());
-        return "home";
+        return "home/home";
+    }
+    @RequestMapping(value = "/cart", method = RequestMethod.GET)
+    public ModelAndView getCartView(){
+        ModelAndView model = new ModelAndView("cart/cart");
+        return model;
+    }
+
+    @RequestMapping(value = "/product", method = RequestMethod.GET)
+    public ModelAndView getProductPage(Model model){
+        model.addAttribute("product", new Product());
+        ModelAndView view = new ModelAndView("product/product");
+        return view;
+    }
+
+    @RequestMapping(value = "/product", method = RequestMethod.POST)
+    public ModelAndView createProduct(@ModelAttribute Product product, @RequestParam("file") MultipartFile[] file) throws IOException {
+        productService.createProduct(product, file);
+        ModelAndView model = new ModelAndView("product/product");
+        return model;
     }
 }

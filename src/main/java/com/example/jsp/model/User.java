@@ -8,11 +8,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
+    private String firstname;
+    private String lastname;
+    private String email;
     private String username;
     private String password;
-    private String name;
-    private String email;
+    private String gender;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
@@ -26,6 +27,29 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUsername() {
@@ -44,20 +68,12 @@ public class User {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getGender() {
+        return gender;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public List<Role> getRole() {
