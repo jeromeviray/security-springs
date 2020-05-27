@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -27,13 +28,17 @@ public class UserController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET) // front page
-    public String getFrontPage(){
-        return "frontpage";
+    @RequestMapping(value = "/index", method = RequestMethod.GET) // front page
+    public String getFrontPage(Model model){
+        List<Product> product = productService.getAllItems();
+        model.addAttribute("allItems", product);
+        return "index-page";
     }
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET) // home page
-    public String getHomePage(){
+    @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET) // home page
+    public String getProduct(Model model){
+        List<Product> product = productService.getAllItems();
+        model.addAttribute("items", product);
         return "home/home";
     }
 

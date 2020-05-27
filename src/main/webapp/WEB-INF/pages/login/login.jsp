@@ -17,12 +17,12 @@
 			</button>
 		</div>
 		<div class="brand">
-			<a class="navbar-brand nav-link" href="/">Shop</a>
+			<a class="navbar-brand nav-link" href="/index">Shop</a>
 		</div>
 		<div class="collapse navbar-collapse" id="div-items">
 			<div class="container">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active" ><a class="nav-link" href="/"> Home <span class="sr-only">(current)</span> </a></li>
+					<li class="nav-item active" ><a class="nav-link" href="/index"> Home <span class="sr-only">(current)</span> </a></li>
 					<li class="nav-item "><a class="nav-link" href="#"> Category </a></li>
 					<li class="nav-item"><a class="nav-link" href="login"> Login </a></li>
 					<li class="nav-item"><a class="nav-link" href="register"> Sign up </a></li>
@@ -72,7 +72,7 @@
 
 	<footer class="bg-dark">
 		<div class="footer-brand">
-			<a class="footer-link" href="../index.html">Shop</a>
+			<a class="footer-link" href="/index">Shop</a>
 		</div>
 		<ul class="item-link">
 			<li><a href="#"> Help </a></li>

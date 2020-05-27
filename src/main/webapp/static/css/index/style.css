@@ -4,23 +4,20 @@
 	font-family: arial;
 	text-decoration-line: none;
 	list-style-type: none;
+	transform: uppercase;
 }
 .brand {
 	border-right: 2px solid #F5F2F2;
 }
-.dropdown .nav-link{
-	color: white;
-}
-.dropdown span {
-	padding-left: 10px;
-}
+.form-inline{
 
+	justify-content: flex-end;
+}
 @media only screen and (max-width: 768px){
 	.brand {
 	border-right: none;
 
 	}
-
 	.content {
 		margin-top: 100px;
 	}
@@ -36,8 +33,7 @@
 }
 @media only screen and (min-width: 768px){
 	.brand {
-		margin: 0;
-
+	margin: 0;
 	}
 	.content {
 		margin-top: 90px;
@@ -70,6 +66,8 @@
 .row .container {
 	padding: 0;
 }
+
+
 .image-content {
 	height: 189px;
 }
@@ -163,6 +161,9 @@ h5 {
 
 	/*footer desktop device*/
 @media only screen and (min-width: 1000px){
+	.content{
+		margin-top: 70px;
+	}
 
 	footer .footer-brand {
 		border-bottom:hidden;

@@ -21,8 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-            auth.userDetailsService(userDetailsService);
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
     }
     @Bean
@@ -42,9 +41,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/","/login", "/register").permitAll()
-                .antMatchers("/cart", "/home").authenticated()
-                .antMatchers("/product").hasRole("ADMIN")
+                .antMatchers("/index","/login", "/register", "/product").permitAll()
+                .antMatchers("/cart", "/home", "/").authenticated()
+//                .antMatchers("/product").hasRole("ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/login")

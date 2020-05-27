@@ -11,19 +11,22 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    private static String rootDir = System.getProperty("user.dir")+"/src/main/webapp/static/images/product";
+    private static String rootDir = System.getProperty("user.dir")+"/src/main/webapp/static/images/items";
 
     public void createProduct(Product product, MultipartFile[] files) throws IOException {
 
         for (MultipartFile file : files){
 
             Path path = Paths.get(rootDir, file.getOriginalFilename());
+            String filename = file.getOriginalFilename();
 
             try{
 
@@ -37,10 +40,17 @@ public class ProductService {
 
             }
 
-            product.setImage(file.getBytes());
+            product.setImage(filename);
 
         }
         productRepository.save(product);
 
+    }
+    public List<Product> getAllItems(){
+        List<Product> items = new ArrayList<>();
+        for (Product product : productRepository.findAll()){
+            items.add(product);
+        }
+        return items;
     }
 }

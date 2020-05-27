@@ -11,10 +11,9 @@ public class Product {
     private String name;
     private int price;
     private int stock;
-    @Lob
-    private byte[] image;
+    private String image;
 
-    public Product(String name, int price, int stock, byte[] image) {
+    public Product(String name, int price, int stock, String image) {
         this.name = name;
         this.price = price;
         this.stock = stock;
@@ -54,11 +53,11 @@ public class Product {
         this.stock = stock;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -72,5 +71,6 @@ public class Product {
                 ", image='" + image + '\'' +
                 '}';
     }
+
 }
 
