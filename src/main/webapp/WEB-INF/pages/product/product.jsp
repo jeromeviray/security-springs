@@ -18,12 +18,12 @@
 			</button>
 		</div>
 		<div class="brand">
-			<a class="navbar-brand nav-link" href="home.html">Shop</a>
+			<a class="navbar-brand nav-link" href="home">Shop</a>
 		</div>
 		<div class="collapse navbar-collapse" id="div-items">
 			<div class="container">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active" ><a class="nav-link" href="home.html"> Home </a></li>
+					<li class="nav-item active" ><a class="nav-link" href="home"> Home </a></li>
 					<li class="nav-item "><a class="nav-link" href="#"> Category </a></li>
 					<li class="nav-item"><a class="nav-link" href="#"> Support </a></li>
 				</ul>
@@ -37,11 +37,11 @@
         	<div class="dropdown-menu">
         		<a class="dropdown-item" href="#">Dashboard</a>
 	         	<a class="dropdown-item" href="#">Edit Profile</a>
-	         	<a class="dropdown-item" href="#">Log Out</a>
+	         	<a class="dropdown-item" href="logout">Log out</a>
         	</div>
 		</div>
 		<div class="navbar-nav">
-			<a class="nav-link" href="../cart/cart.html"><i style="font-size:36px" class="fa">&#xf07a;</i></a>
+			<a class="nav-link" href="/cart"><i style="font-size:36px" class="fa">&#xf07a;</i></a>
 		</div>
 	</div>
 
@@ -91,7 +91,7 @@
 	</main>
 	<footer class="bg-dark">
 		<div class="footer-brand">
-			<a class="footer-link" href="home.html">Shop</a>
+			<a class="footer-link" href="home">Shop</a>
 		</div>
 		<ul class="item-link">
 			<li><a href="#"> Help </a></li>

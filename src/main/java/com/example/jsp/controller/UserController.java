@@ -52,6 +52,7 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST) // creating new user and saving in database
     public ModelAndView addUser(@ModelAttribute("user") User user){
         userService.saveUser(user);
+
         ModelAndView model = new ModelAndView("register/register");
         return model;
     }
@@ -71,11 +72,6 @@ public class UserController {
         userDetailsService.loadUserByUsername(user.getUsername());
         return "home/home";
     }
-    @RequestMapping(value = "/cart", method = RequestMethod.GET)
-    public ModelAndView getCartView(){
-        ModelAndView model = new ModelAndView("cart/cart");
-        return model;
-    }
 
     @RequestMapping(value = "/product", method = RequestMethod.GET)
     public ModelAndView getProductPage(Model model){
@@ -90,4 +86,5 @@ public class UserController {
         ModelAndView model = new ModelAndView("product/product");
         return model;
     }
+
 }

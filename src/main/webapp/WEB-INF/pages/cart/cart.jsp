@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
 	<title> Shop Mall </title>
@@ -35,56 +36,88 @@
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="#">Dashboard</a>
                 <a class="dropdown-item" href="#">Edit Profile</a>
-                <a class="dropdown-item" href="#">Log Out</a>
+                <a class="dropdown-item" href="logout">Log out</a>
             </div>
         </div>
         <div class="navbar-nav">
             <a class="nav-link" href="cart"><i style="font-size:36px" class="fa">&#xf07a;</i></a>
         </div>
     </div>
-	<main class="content">
-		<div class="container header-cart">
-			<h2>Cart</h2>
-		</div>
-		<!-- <div class="container border border-dark ">
-			<div class="form-check">
-				<input type="checkbox" class="form-check-input" id="remember-me">
-				<label for="remember-me" class="form-check-label">Select All</label>
-			</div>
-		</div> -->
-		<div class="container inner-content justify-content-between">
-			<div class="list-item-content">
-				<table class="container">
-					<tr class="row">
-						<td class="col-7">
-							<div class="content-product">
-								<div class="product-img">
-									<img src="static/images/product/iphone-11.jpeg">
-								</div>
-								<div>
-									<a href="#"> iphone 11 </a>
-								</div>
-							</div>
+<main class="content">
+    <div class="container header-cart">
+        <h2>Cart</h2>
+    </div>
+    <div class="container inner-content justify-content-between">
+        <div class="list-item-content">
+            <div class="head-group" >
+                <ul class="row">
+                    <li class="col-5">
+                        <span>Items</span>
+                    </li>
+                    <li class="col-3">
+                        <span>Quantity</span>
+                    </li>
+                    <li class="col-1">
+                        <span>Price</span>
+                    </li>
+                    <li class="btn-remove">
+                        <span>All</span>
+                        <a href = "/cart/remove/all">
+                            <button class="btn" type="submit">
+                                <i class="fa fa-trash"></i>
+                                <input type="hidden" value="1">
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <table class="container">
+                <c:if test="${not empty error}">
+                    <div class="font-italic text-center" style="margin-top: 20px;">
+                        <c:out value="${error}"></c:out>
+                    </div>
+                </c:if>
+                    <c:forEach items="${order}" var="order">
+                            <tr class="row" style="margin-bottom: 20px;">
 
-						</td>
-						<td class="col-3 align-self-center">Quantity</td>
-						<td class="col-2 align-self-center">Price</td>
-					</tr>
-				</table>
-			</div>
+                                <td class="col-5" style="margin-top: 20px;">
+                                    <div class="content-product">
+                                        <div class="product-img">
+                                            <img src="static/images/items/${order.product.image}">
+                                        </div>
+                                        <div>
+                                            <a href="#">${order.product.name} </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="col-3 align-self-center">${order.quantity}</td>
+                                <td class="col-2 align-self-center">${order.product.price}</td>
+                                <td class="col-2">
+                                    <div class="form-group" style="margin: 50px 20px;">
+                                        <a href = "/cart/remove/${order.product.id}">
+                                            <button class="btn" type="submit">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                    </c:forEach>
+            </table>
+        </div>
 
-			<div class="summary-content">
-				<div class="container">
-					<div class="summary">
-						<span>Payment</span>
-					</div>
-					<div class="summary-amount">
-						<span>  </span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</main>
+        <div class="summary-content">
+            <div class="container">
+                <div class="summary">
+                    <span>Payment</span>
+                </div>
+                <div class="summary-amount">
+                    <span> ${payment} </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
 	<footer class="bg-dark">
 		<div class="footer-brand">

@@ -6,6 +6,7 @@
 		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
 			<link rel="stylesheet" type="text/css" href="static/css/index/style.css">
 			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body style="background-color: #eeeeee;">
 	<div class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
@@ -40,23 +41,32 @@
 			<div class="row">
 			    <c:forEach items="${allItems}" var="itemsList">
                     <div class="col-5 col-xl-2 col-lg-2 col-md-3 col-sm-5 p-0 prod-items">
-                        <div class="container image-content" style="padding: 0">
-                            <a href="#">
-                                <img src="static/images/items/${itemsList.image}" alt="iphone-4">
-                            </a>
-                        </div>
-
-                        <div class="container title">
-
-                            <div class="name-product">
-                                <span> <a href="#"> ${itemsList.name}  </a> </span>
+                         <form action="#" modelAttribute="" class="form-group">
+                            <div class="container image-content" style="padding: 0">
+                                <a href="#">
+                                    <img src="static/images/items/${itemsList.image}" alt="iphone-4">
+                                </a>
                             </div>
 
-                            <div class="price-product">
-                                <span class="text-muted"> Price: ${itemsList.price} </span>
-                            </div>
+                            <div class="container title">
 
-                        </div>
+                                <div class="name-product">
+                                    <span> <a href="#"> ${itemsList.name} </a> </span>
+                                </div>
+
+                                <div class="price-product">
+                                    <span class="text-muted"> Price: ${itemsList.price} </span>
+                                </div>
+                                <div class="button-cart" style="width: 100%; height: 40px;">
+                                    <a href = "/cart/${itemsList.id}">
+                                        <button class="btn btn-secondary" type="button" style="width: 80%; margin-left: 20px;">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                            <span>Add Cart</span>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                         </form>
                     </div>
                 </c:forEach>
 			</div>

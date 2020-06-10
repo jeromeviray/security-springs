@@ -6,11 +6,11 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<title></title>
 	</head>
-
 	<body>
-		<h1> ERROR </h1>
-		<div>
-            <h4> go <a href="/">Home</a></h4>
-        </div>
+		<main class="main-content container-fluid">
+            <div class="content">
+                <h2> Error: Page not Found! </h2>
+            </div>
+        </main>
 	</body>
 </html>

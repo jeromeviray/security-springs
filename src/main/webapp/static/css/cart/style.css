@@ -70,8 +70,23 @@
 	background-color: white;
 	max-width: 100%;
 }
-table tr {
+.head-group {
 	margin-top: 20px;
+}
+.head-group li span{
+	font-family: arial;
+	font-size: 18px;
+}
+.head-group .row {
+	height: 50px;
+}
+.head-group li {
+	align-self: center;
+}
+.head-group .btn-remove {
+	margin-left: 80px;
+}
+table tr {
 	height: 100%;
 }
 table tr td {
