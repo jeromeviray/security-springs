@@ -78,41 +78,96 @@
                     </div>
                 </c:if>
                     <c:forEach items="${order}" var="order">
-                            <tr class="row" style="margin-bottom: 20px;">
+                        <tr class="row" style="margin-bottom: 20px;">
 
-                                <td class="col-5" style="margin-top: 20px;">
-                                    <div class="content-product">
-                                        <div class="product-img">
-                                            <img src="static/images/items/${order.product.image}">
-                                        </div>
-                                        <div>
-                                            <a href="#">${order.product.name} </a>
-                                        </div>
+                            <td class="col-5" style="margin-top: 20px;">
+                                <div class="content-product">
+                                    <div class="product-img">
+                                        <img src="static/images/items/${order.product.image}">
                                     </div>
-                                </td>
-                                <td class="col-3 align-self-center">${order.quantity}</td>
-                                <td class="col-2 align-self-center">${order.product.price}</td>
-                                <td class="col-2">
-                                    <div class="form-group" style="margin: 50px 20px;">
-                                        <a href = "/cart/remove/${order.product.id}">
-                                            <button class="btn" type="submit">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </a>
+                                    <div>
+                                        <a href="#">${order.product.name} </a>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </td>
+                            <td class="col-3 align-self-center">${order.quantity}</td>
+                            <td class="col-2 align-self-center">${order.product.price}</td>
+                            <td class="col-2">
+                                <div class="form-group" style="margin: 50px 20px;">
+                                    <a href = "/cart/remove/${order.product.id}">
+                                        <button class="btn" type="submit">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
                     </c:forEach>
             </table>
         </div>
 
-        <div class="summary-content">
+        <div class="summary-content-contianer">
             <div class="container">
                 <div class="summary">
                     <span>Payment</span>
                 </div>
-                <div class="summary-amount">
-                    <span> ${payment} </span>
+                <div class="summary-header">
+                    <ul class="row">
+                        <li class="col-2">Qty</li>
+                        <li class="col-5">Product</li>
+                        <li class="col-3">Price</li>
+                        <li class="col-2">Amt</li>
+                    </ul>
+                </div>
+                <div class="receipt-container row">
+                    <div class="list-container col-9" style="padding-right: 0;">
+                        <c:forEach items="${order}" var="order">
+                            <ul class="row items-contianer">
+                                <li class="col-2">${order.quantity}</li>
+                                <li class="col-7"><p class="product-name">${order.product.name}</p></li>
+                                <li class="col-3">${order.product.price}</li>
+                            </ul>
+                        </c:forEach>
+                    </div>
+                    <div class="col-3 items-contianer" style="margin-top:0;">
+                        <c:forEach items="${amount}" var="amount">
+                            <ul class="items-contianer">
+                                <li>${amount}</li>
+                            </ul>
+                        </c:forEach>
+                    </div>
+                </div>
+                <div class="flex-container">
+                    <div class="sub-payment-container">
+                        <div class="sub-container">
+                            <div class="subtotal-container">
+                                <h6 style="font-family: catamaran; font-size: 16px;">SubTotal:</h6>
+                            </div>
+                            <div class="total-container">
+                                    <h6 style="font-family: catamaran;	font-size: 16px;"><span class="text-muted" style="font-size: 12px">&#x20B1;</span>${payment}</h6>
+                            </div>
+                        </div>
+                        <div class="sub-container">
+                            <div class="fee-container">
+                                    <h6 style="font-family: catamaran;	font-size: 16px;">Shipping Fee:</h6>
+                            </div>
+                            <div class="total-container">
+                                    <h6 style="font-family: catamaran;	font-size: 16px;"><span class="text-muted" style="font-size: 12px;">&#x20B1;</span>400</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sub-container" style="margin-top: 10px;">
+                        <div class="total-div">
+                            <h6 style="font-family: catamaran;	font-size: 16px;">Total:</h6>
+                        </div>
+                        <div class="total-container">
+                            <h6 style="font-family: catamaran;	font-size: 16px;"><span class="text-muted" style="font-size: 12px">&#x20B1;</span>${payment} </h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Check Out</button>
                 </div>
             </div>
         </div>

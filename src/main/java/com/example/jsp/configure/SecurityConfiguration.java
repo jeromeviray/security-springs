@@ -1,5 +1,6 @@
 package com.example.jsp.configure;
 
+import com.example.jsp.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
     @Autowired
     @Qualifier("customUserDetailsService")
     private UserDetailsService userDetailsService;
@@ -44,11 +46,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/index/**", "/product/**").permitAll()
                 .antMatchers("/", "/home/**", "/cart/**").permitAll()
-//                .antMatchers("/product").hasRole("ADMIN")
+                .antMatchers("/product").hasRole("ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/home")
+                .successHandler(new SuccessHandler())
                 .permitAll();
     }
 }

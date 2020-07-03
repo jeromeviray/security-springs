@@ -12,6 +12,6 @@ public interface CartService {
     void setSession(int id, HttpServletRequest request);
     void remove(int id, HttpServletRequest request);
     int check(int id, List<Cart> cart);
-    List<Double> totalAmount(List<Cart> cart);
+    List<Double> getTotalAmount(List<Cart> cart);
 }
 

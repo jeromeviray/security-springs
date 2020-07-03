@@ -28,6 +28,7 @@ public class UserController {
     @Autowired
     private ProductService productService;
 
+
     @RequestMapping(value = "/index", method = RequestMethod.GET) // front page
     public String getFrontPage(Model model){
         List<Product> product = productService.getAllItems();
@@ -52,15 +53,16 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST) // creating new user and saving in database
     public ModelAndView addUser(@ModelAttribute("user") User user){
         userService.saveUser(user);
-
         ModelAndView model = new ModelAndView("register/register");
         return model;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET) // get login form
-    public ModelAndView getLoginPage(Model model, String error){
+    public ModelAndView getLoginPage(Model model, String error, String logout){
         if(error != null){
             model.addAttribute("error", "Username and Password are Invalid");
+        }else if(logout != null){
+            model.addAttribute("logout", "Log out Successfully");
         }
         ModelAndView view = new ModelAndView("login/login");
         model.addAttribute("users", new User());
@@ -70,7 +72,7 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST) // get data from user
     public String login(@ModelAttribute("users") @RequestBody User user){
         userDetailsService.loadUserByUsername(user.getUsername());
-        return "home/home";
+        return "redirect:/home";
     }
 
     @RequestMapping(value = "/product", method = RequestMethod.GET)

@@ -5,11 +5,9 @@ import com.example.jsp.model.Product;
 import com.example.jsp.repository.ProductRepository;
 import com.example.jsp.service.cart.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +41,7 @@ public class CartServiceImp implements CartService {
             }else {
                 cart.add(new Cart(findById(id), 1));
             }
+
             request.getSession().setAttribute("session_cart", cart);
         }
     }
@@ -66,7 +65,7 @@ public class CartServiceImp implements CartService {
     }
 
     @Override
-    public List<Double> totalAmount(List<Cart> cart) {
+    public List<Double> getTotalAmount(List<Cart> cart) {
         List<Double> amount = new ArrayList<>();
         double items = 0.0;
         for (int i = 0; i < cart.size(); i++){

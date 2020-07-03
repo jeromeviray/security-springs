@@ -45,6 +45,7 @@
 				</div>
 				<form:form action="/login" modelAttribute="users" class="form-content" method="POST">
 				    <span style=color:red;> ${error} </span>
+				    <span style=color:green;> ${logout} </span>
                         <div class="form-group username">
                             <form:input type="text" path="username" id="username" placeholder="Username" class="form-control"/>
                         </div>

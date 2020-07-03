@@ -1,10 +1,12 @@
 package com.example.jsp.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class User {
+public class User implements Serializable {
+    private static final long serialVersionUID=1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -20,6 +22,8 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id")
     )
     private List<Role> role;
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    private Customer customer;
 
     public int getId() {
         return id;
@@ -84,4 +88,11 @@ public class User {
         this.role = role;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 }

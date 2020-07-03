@@ -58,124 +58,24 @@
 }
 
 	/* main */
-.content .inner-content {
-	display: flex;
-	padding: 0;
-}
 
-.list-item-content{
-	width: 780px;
-}
-.list-item-content .row {
+.main-container .container {
+	height: 440px;
+	width: 450px;
 	background-color: white;
+}
+.container .cus-container{
+	text-align: center;
+	padding: 10px;
+}
+.cus-container span {
+	font-family: tahoma;
+	font-size:20px;
+}
+.form-group input {
+	margin:0 auto;
 	max-width: 100%;
 }
-.head-group {
-	margin-top: 20px;
-	margin-bottom: 0px;
-}
-.head-group li span{
-	font-family: arial;
-	font-size: 18px;
-}
-.head-group .row {
-	height: 50px;
-}
-.head-group li {
-	align-self: center;
-}
-.head-group .btn-remove {
-	margin-left: 80px;
-}
-table tr {
-	height: 100%;
-	margin-top: 20px;
-}
-table tr td {
-	padding: 10px 0;
-}
-
-td .content-product {
-	display: flex;
-}
-.col-1 .form-group span{
-	margin: 50px 40px;
-}
-.content-product .img {
-	margin-right: 20px;
-}
-.product-img {
-	margin-right: 20px;
-	width: 80px;
-	height: 120px;
-}
-.product-img img {
-	width: 100%;
-	height: 100%;
-}
-.summary-content-contianer {
-	margin: 0;
-	height: 100%;
-	width: 400px;
-}
-.summary-content-contianer .container{
-	background-color: white;
-    width: 100%;
-    height: 100%;
-    margin-top: 18px;
-    padding-bottom: 10px;
-}
-.container .summary {
-	text-align: center;
-	border-bottom: 2px solid #f2f2f2;
-}
-.summary span {
-	font-family: tahoma;
-	font-size: 24px;
-}
-.summary-header .row {
-	border-bottom: 1px solid black;
-	padding-bottom: 10px;
-}
-.receipt-container {
-	border-bottom: 1px solid black;
-}
-.receipt-container .row{
-	width: 300px;
-}
-.items-contianer {
-	font-family: ariel;
-	font-size: 14px;
-	margin-top: 4px;
-}
-.items-contianer .product-name{
-	width: 140px;
-	white-space: nowrap;
-	margin:0;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-.flex-container .sub-payment-container{
-	border-bottom: 2px solid #f2f2f2;
-	margin-top: 10px;
-}
-.flex-container .sub-container{
-	display: flex;
-	justify-content: space-between;
-}
-.flex-container .total-container{
-	margin-right: 8px;
-}
-
-.flex-container h6 {
-	font-family: catamaran;
-	font-size: 16px;
-
-}
-.button-container {
-	margin: 20px;
-}
-
 
 
 	/*footer mobile device*/

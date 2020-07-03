@@ -6,6 +6,7 @@ import com.example.jsp.service.cart.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +24,6 @@ public class CartController {
     @Autowired
     private ProductService productService;
 
-
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
     public ModelAndView getCartView(Model model, HttpSession session){
         List<Cart> cart = (List<Cart>) session.getAttribute("session_cart");
@@ -32,13 +32,16 @@ public class CartController {
             String message = "No Items Added in Cart. Please Select Items";
             model.addAttribute("error", message);
         }else {
-            List<Double> amount = cartService.totalAmount(cart);
+            List<Double> amount = cartService.getTotalAmount(cart);
             double payment = 0.0;
-
-            for (int i = 0; i < amount.size(); i ++){
-                payment += amount.get(i);
+            List<Double> amt = new ArrayList<>();
+            for (int i = 0; i < amount.size(); i ++) {
+                amt.add(amount.get(i)); // total amount per product
+                payment += amount.get(i);// to get the subTotal
             }
-            model.addAttribute("payment", payment);
+            model.addAttribute("amount", amt); //display all amount
+            
+            model.addAttribute("payment", payment); // display the subTotal amount
         }
         model.addAttribute("order", cart);
         ModelAndView view = new ModelAndView("cart/cart");

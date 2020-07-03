@@ -39,26 +39,26 @@
 	<main class="main-content container-fluid">
 		<div class="content">
 			<div class="row">
-			    <c:forEach items="${allItems}" var="itemsList">
+			    <c:forEach items="${allItems}" var="items">
                     <div class="col-5 col-xl-2 col-lg-2 col-md-3 col-sm-5 p-0 prod-items">
                          <form action="#" modelAttribute="" class="form-group">
                             <div class="container image-content" style="padding: 0">
                                 <a href="#">
-                                    <img src="static/images/items/${itemsList.image}" alt="iphone-4">
+                                    <img src="static/images/items/${items.image}" alt="items.name">
                                 </a>
                             </div>
 
                             <div class="container title">
 
                                 <div class="name-product">
-                                    <span> <a href="#"> ${itemsList.name} </a> </span>
+                                    <span> <a href="#"> ${items.name} </a> </span>
                                 </div>
 
                                 <div class="price-product">
-                                    <span class="text-muted"> Price: ${itemsList.price} </span>
+                                    <span class="text-muted"> Price: <span class="text-muted" style="font-size: 12px">&#x20B1;</span>${items.price} </span>
                                 </div>
                                 <div class="button-cart" style="width: 100%; height: 40px;">
-                                    <a href = "/cart/${itemsList.id}">
+                                    <a href = "/cart/${items.id}">
                                         <button class="btn btn-secondary" type="button" style="width: 80%; margin-left: 20px;">
                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                             <span>Add Cart</span>
