@@ -6,13 +6,17 @@ import com.example.jsp.model.User;
 import com.example.jsp.service.CustomUserDetailsService;
 import com.example.jsp.service.ProductService;
 import com.example.jsp.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
@@ -27,6 +31,8 @@ public class UserController {
 
     @Autowired
     private ProductService productService;
+
+    Logger logger = LoggerFactory.getLogger(UserController.class);
 
 
     @RequestMapping(value = "/index", method = RequestMethod.GET) // front page
@@ -44,17 +50,25 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET) // get registration form
-    public String register(Model model){
+    public ModelAndView register(Model model){
         User user = new User();
         model.addAttribute("user", user);
-
-        return "register/register";
+        return new ModelAndView("register/register");
     }
     @RequestMapping(value = "/register", method = RequestMethod.POST) // creating new user and saving in database
-    public ModelAndView addUser(@ModelAttribute("user") User user){
-        userService.saveUser(user);
-        ModelAndView model = new ModelAndView("register/register");
-        return model;
+    public String addUser(@ModelAttribute("user") @Valid User user,
+                                BindingResult result,
+                                Model model) {
+
+        if (result.hasErrors()) {
+            logger.info(String.valueOf(result.getAllErrors()),
+                        "Some Information in Form Registration are missing. please Sign up correctly");
+            model.addAttribute("user", user);
+            return "register/register";
+        }
+        logger.info("Successfully created account with unique username.");
+       // userService.saveUser(user);
+        return "redirect:/register";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET) // get login form

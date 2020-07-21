@@ -47,21 +47,26 @@
 				<form:form action="register" modelAttribute="user" class="form-content" method="POST">
 					<div class="row">
 						<div class="col-12 col-lg-6 col-md-6 form-group">
-							<form:input type="text" path="firstname" id="firstname" placeholder="Firstname" class="form-control"/>
+							<form:input type="text" path="firstName" id="firstName" placeholder="Firstname" class="form-control"/>
+						    <small><form:errors path="firstName"/></small>
 						</div>
 						<div class="col-12 col-lg-6 col-md-6 form-group">
-							<form:input type="text" path="lastname" id="lastname" placeholder="Lastname" class="form-control"/>
+							<form:input type="text" path="lastName" id="lastName" placeholder="Lastname" class="form-control"/>
+						    <form:errors path="lastName"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<form:input type="text" path="email" id="email" placeholder="Email/Number" class="form-control"/>
+						<form:errors path="email"/>
 					</div>
 					<div class="form-group">
 						<form:input type="text" path="username" id="username" placeholder="Username" class="form-control"/>
+						<form:errors path="username"/>
 					</div>
 					<div class="row form-group">
 						<div class="col-12 form-group password">
 							<form:input type="password" path="password" id="password"  placeholder="Password" class="form-control" data-toggle="password"/>
+							<form:errors path="password"/>
 						</div>
 					</div>
 					<div class="select-content">
@@ -69,6 +74,7 @@
 							<option value="male">Male</option>
 							<option value="female">Female</option>
 						</form:select>
+						<form:errors path="gender"/>
 					</div>
 					<div class="form-check">
 						<input type="checkbox" id="terms" class="form-check-input">
