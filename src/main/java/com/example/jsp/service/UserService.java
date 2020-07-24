@@ -32,8 +32,8 @@ public class UserService{
 
         userRepo.save(user);
     }
-    public boolean isUsernameExisted(String username){
-        if (userRepo.findByUsername(username) == null) {
+    public boolean isUsernameAlreadyExisted(String username){
+        if (userRepo.findByUsername(username) == null){
             return false;
         }
         return true;

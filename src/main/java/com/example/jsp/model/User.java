@@ -4,6 +4,7 @@ import com.example.jsp.model.validation.annotation.Unique;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -15,20 +16,21 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @NotNull
+    @NotBlank(message = "Please enter your FirstName.")
     private String firstName;
-    @NotNull
+    @NotBlank(message = "Please enter your LastName.")
     private String lastName;
-    @NotNull
-    @Email
+    @NotBlank(message = "Please enter your Email Address.")
+    @Email(message = "Please enter your invalid Email.")
     private String email;
-    @NotNull
+    @Column(unique = true)
+    @NotBlank(message = "Please enter your username.")
     @Unique
     private String username;
-    @NotNull
-    @Size(min = 8, max = 32, message = "Password must be greater than 8 or not less than 8")
+    @NotNull(message = "Please enter your password.")
+    @Size(min = 8, message = "Password must be not less than 8.")
     private String password;
-    @NotNull
+    @NotBlank(message = "Please enter your Gender Identity.")
     private String gender;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

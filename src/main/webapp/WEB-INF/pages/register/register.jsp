@@ -3,11 +3,19 @@
 <html>
 <head>
 	<title> Shop Mall </title>
-		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
-			<link rel="stylesheet" type="text/css" href="static/css/registration/style.css">
-			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="static/css/registration/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <style>
+        .error{
+            font-style:italic;
+            color:red;
+            padding:10px;
+            margin-top:10px;
+        }
+    </style>
 </head>
 <body style="background-color: #eeeeee;">
 	<div class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
@@ -48,25 +56,25 @@
 					<div class="row">
 						<div class="col-12 col-lg-6 col-md-6 form-group">
 							<form:input type="text" path="firstName" id="firstName" placeholder="Firstname" class="form-control"/>
-						    <small><form:errors path="firstName"/></small>
+						    <small><form:errors path="firstName" cssClass="error"/></small>
 						</div>
 						<div class="col-12 col-lg-6 col-md-6 form-group">
 							<form:input type="text" path="lastName" id="lastName" placeholder="Lastname" class="form-control"/>
-						    <form:errors path="lastName"/>
+						    <small><form:errors path="lastName" cssClass="error"/></small>
 						</div>
 					</div>
 					<div class="form-group">
 						<form:input type="text" path="email" id="email" placeholder="Email/Number" class="form-control"/>
-						<form:errors path="email"/>
+						<small><form:errors path="email" cssClass="error"/></small>
 					</div>
 					<div class="form-group">
 						<form:input type="text" path="username" id="username" placeholder="Username" class="form-control"/>
-						<form:errors path="username"/>
+						<small><form:errors path="username" cssClass="error"/></small>
 					</div>
 					<div class="row form-group">
 						<div class="col-12 form-group password">
 							<form:input type="password" path="password" id="password"  placeholder="Password" class="form-control" data-toggle="password"/>
-							<form:errors path="password"/>
+							<small><form:errors path="password" cssClass="error"/></small>
 						</div>
 					</div>
 					<div class="select-content">
@@ -74,7 +82,7 @@
 							<option value="male">Male</option>
 							<option value="female">Female</option>
 						</form:select>
-						<form:errors path="gender"/>
+						<small><form:errors path="gender" cssClass="error"/></small>
 					</div>
 					<div class="form-check">
 						<input type="checkbox" id="terms" class="form-check-input">

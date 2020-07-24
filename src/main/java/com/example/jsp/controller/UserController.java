@@ -56,18 +56,17 @@ public class UserController {
         return new ModelAndView("register/register");
     }
     @RequestMapping(value = "/register", method = RequestMethod.POST) // creating new user and saving in database
-    public String addUser(@ModelAttribute("user") @Valid User user,
+    public String addUser( @Valid  @ModelAttribute("user") @RequestBody User user,
                                 BindingResult result,
-                                Model model) {
+                                Model model ) {
 
         if (result.hasErrors()) {
-            logger.info(String.valueOf(result.getAllErrors()),
-                        "Some Information in Form Registration are missing. please Sign up correctly");
+            logger.info("Some Information in Form Registration are missing. please Sign up correctly");
             model.addAttribute("user", user);
             return "register/register";
         }
         logger.info("Successfully created account with unique username.");
-       // userService.saveUser(user);
+        //userService.saveUser(user);
         return "redirect:/register";
     }
 

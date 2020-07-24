@@ -26,9 +26,9 @@ public class Customer {
     }
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "customerUser", joinColumns = @JoinColumn(name = "cusId", referencedColumnName = "id"),
-                                        inverseJoinColumns = @JoinColumn(name = "userId", referencedColumnName = "id")
-                )
+    @JoinTable(name = "customerUser",
+            joinColumns = @JoinColumn(name = "cusId", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"))
     private User user;
 
     public Customer() {
