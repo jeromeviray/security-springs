@@ -36,7 +36,7 @@
         	</a>
         	<div class="dropdown-menu">
         		<a class="dropdown-item" href="#">Dashboard</a>
-	         	<a class="dropdown-item" href="#">Edit Profile</a>
+	         	<a class="dropdown-item" href="/user/change/password">Change Password</a>
 	         	<a class="dropdown-item" href="logout">Log out</a>
         	</div>
 		</div>
@@ -59,7 +59,7 @@
 							<i class="fas fa-file-upload"></i>
 							<span id="span-label"></span>Select File
 						</label>
-						<input type="file" name="file" id="file" multiple="true">
+						<input type="file" name="file" id="file" multiple="true" accept="image/*">
 					</div>
 				</div>
 				<div class="col-9">

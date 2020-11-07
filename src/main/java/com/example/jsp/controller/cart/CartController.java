@@ -1,4 +1,4 @@
-package com.example.jsp.controller;
+package com.example.jsp.controller.cart;
 
 import com.example.jsp.model.Cart;
 import com.example.jsp.service.ProductService;

@@ -34,12 +34,12 @@
         	</a>
         	<div class="dropdown-menu">
         		<a class="dropdown-item" href="#">Dashboard</a>
-	         	<a class="dropdown-item" href="#">Edit Profile</a>
-	         	<a class="dropdown-item" href="logout">Log out</a>
+	         	<a class="dropdown-item" href="/user/change/password">Change Password</a>
+	         	<a class="dropdown-item" href="/logout">Log out</a>
         	</div>
 		</div>
 		<div class="navbar-nav">
-			<a class="nav-link" href="cart"><i style="font-size:36px" class="fa">&#xf07a;</i></a>
+			<a class="nav-link" href="/cart"><i style="font-size:36px" class="fa">&#xf07a;</i></a>
 		</div>
 	</div>
 

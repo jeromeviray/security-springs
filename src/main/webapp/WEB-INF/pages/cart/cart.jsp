@@ -35,7 +35,7 @@
             </a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="#">Dashboard</a>
-                <a class="dropdown-item" href="#">Edit Profile</a>
+                <a class="dropdown-item" href="/user/change/password">Change Password</a>
                 <a class="dropdown-item" href="logout">Log out</a>
             </div>
         </div>

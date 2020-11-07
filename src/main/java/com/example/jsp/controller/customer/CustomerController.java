@@ -1,4 +1,4 @@
-package com.example.jsp.controller;
+package com.example.jsp.controller.customer;
 
 import com.example.jsp.BeanUtils;
 import com.example.jsp.model.Customer;

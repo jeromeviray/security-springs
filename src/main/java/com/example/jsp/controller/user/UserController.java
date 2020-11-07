@@ -1,8 +1,9 @@
-package com.example.jsp.controller;
+package com.example.jsp.controller.user;
 
 
 import com.example.jsp.model.Product;
 import com.example.jsp.model.User;
+import com.example.jsp.model.change.ChangePassword;
 import com.example.jsp.service.CustomUserDetailsService;
 import com.example.jsp.service.ProductService;
 import com.example.jsp.service.UserService;
@@ -12,12 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -66,7 +68,7 @@ public class UserController {
             return "register/register";
         }
         logger.info("Successfully created account with unique username.");
-        //userService.saveUser(user);
+        userService.saveUser(user);
         return "redirect:/register";
     }
 
@@ -87,19 +89,29 @@ public class UserController {
         userDetailsService.loadUserByUsername(user.getUsername());
         return "redirect:/home";
     }
-
-    @RequestMapping(value = "/product", method = RequestMethod.GET)
-    public ModelAndView getProductPage(Model model){
-        model.addAttribute("product", new Product());
-        ModelAndView view = new ModelAndView("product/product");
-        return view;
+    @RequestMapping(value = "/user/change", method = RequestMethod.GET)
+    public ModelAndView getPasswordForm(Model model){
+        model.addAttribute("changePassword", new ChangePassword());
+        return new ModelAndView("change/password");
     }
 
-    @RequestMapping(value = "/product", method = RequestMethod.POST)
-    public ModelAndView createProduct(@ModelAttribute Product product, @RequestParam("file") MultipartFile[] file) throws IOException {
-        productService.createProduct(product, file);
-        ModelAndView model = new ModelAndView("product/product");
-        return model;
+    @RequestMapping(value = "/user/change/password", method = RequestMethod.POST)
+    public String getPassword(@ModelAttribute ChangePassword changePassword, Model model){
+//        if (changePassword.getCurrent().length() == 0){
+//            model.addAttribute("emptied", "Must be not empty.");
+//            return "redirect:/user/change";
+//        }
+        String value = userService.changePassword(changePassword);
+
+        if (value.equals("matching")){
+            model.addAttribute("matching", "Current password is invalid. try again.");
+            return "change/password";
+        }else if (value.equals("invalid")){
+            model.addAttribute("invalid", "Invalid Confirmation.");
+            return "change/password";
+        }
+        return "redirect:/user/change";
     }
+
 
 }
